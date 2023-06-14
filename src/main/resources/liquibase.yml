@@ -1,0 +1,7 @@
+url: jdbc:mysql://localhost:5432/postgres
+username: postgres
+password: 5432
+
+changeLogFile: db/changelog/db.changelog-master.yaml
+
+contexts: development
