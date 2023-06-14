@@ -37,7 +37,7 @@ public class CustomerService {
     public CustomerDTO getCustomerById(Long id) {
         log.info("Action.Log.CustomerService.getCustomerById: Fetching customer with id: {}", id);
         Customer customer = customerRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Error.Log.CustomerService.getCustomerById: Customer not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Customer not found with id: " + id));
         CustomerDTO customerDTO = CustomerMapper.INSTANCE.toDTO(customer);
         log.info("Action.Log.CustomerService.getCustomerById: Fetched customer: {}", customerDTO);
         return customerDTO;
@@ -68,7 +68,7 @@ public class CustomerService {
     public CustomerDTO partiallyUpdateCustomer(Long id, CustomerDTO updatedCustomerDTO) {
         log.info("Action.Log.CustomerService.partiallyUpdateCustomer:  Partially updating customer with id: {}", id);
         Customer existingCustomer = customerRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Error.Log.CustomerService.partiallyUpdateCustomer:  Customer not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Customer not found with id: " + id));
 
         if (updatedCustomerDTO.getName() != null) {
             existingCustomer.setName(updatedCustomerDTO.getName());
@@ -90,7 +90,7 @@ public class CustomerService {
             customerRepository.delete(optionalCustomer.get());
             log.info("Action.Log.CustomerService.deleteCustomer: Customer with id {} deleted", id);
         } else {
-            throw new ResourceNotFoundException("Action.Log.CustomerService.deleteCustomer: Customer not found with id: " + id);
+            throw new ResourceNotFoundException("Customer not found with id: " + id);
         }
     }
 
